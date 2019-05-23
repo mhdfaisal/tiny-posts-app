@@ -1,5 +1,6 @@
 import React from 'react';
 import FormFields from '../../Widgets/FormFields/FormFields';
+import styles from './EditPost.module.css';
 import fetchData from '../../../api/fetchData';
 class EditPost extends React.Component{
 
@@ -33,6 +34,7 @@ class EditPost extends React.Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         fetchData.get(`/${this.props.match.params.id}`)
         .then(res => {
             let {data} = res;
@@ -95,7 +97,7 @@ class EditPost extends React.Component{
 
     render(){
         return(
-            <div className="container">
+            <div className={`container ${styles.editPostContainer}`}>
             {this.renderPostHeader()}
             {this.renderEditForm()}
             </div>

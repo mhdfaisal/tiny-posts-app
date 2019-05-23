@@ -15,13 +15,19 @@ class PostsList extends React.Component{
         .catch(err => console.log(err));
     }
 
+    handleDeleteClick = (pid)=>{
+        fetchData.delete(`/${pid}`)
+        .then(res => this.props.history.push("/delete"))
+        .catch(err => console.log(err));
+    }
+
     renderPostListItem = ()=>{
         const {posts} = this.state;
         return posts.length > 0 ? 
         posts.map(item =>{
            return(
                <div key={uuid()}>
-                   <PostsListItem postItem={item} />
+                   <PostsListItem postItem={item} handleDeleteClick={this.handleDeleteClick} />
                </div>
            )
         }) 

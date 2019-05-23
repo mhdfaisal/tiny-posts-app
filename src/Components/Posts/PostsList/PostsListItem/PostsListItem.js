@@ -2,20 +2,20 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import styles from './PostListItem.module.css';
 
-const renderConfigButtons = (id)=>{
+const renderConfigButtons = (id,handleDeleteClick)=>{
     return(
         <>
         <div className="col-lg-1 col-md-2 col-sm-6 align-self-center p-1">
             <Link to={`/edit/${id}`} className="btn btn-primary btn-block">Edit</Link>
         </div>
         <div className="col-lg-1 col-md-2 col-sm-6 align-self-center p-1">
-            <Link to={`/delete/${id}`} className="btn btn-danger btn-block">Delete</Link>
+            <button className="btn btn-danger btn-block" onClick={()=> handleDeleteClick(id)}>Delete</button>
         </div>
         </>
     )
 }
 
-const PostsListItem = ({postItem})=>{
+const PostsListItem = ({postItem, handleDeleteClick})=>{
     let {body,title,id} = postItem;
     return(
         <div className={`row ${styles.postsListItemContainer} pb-5 mb-5`}>
@@ -24,7 +24,7 @@ const PostsListItem = ({postItem})=>{
                 <p className="mb-3">{body}</p>
             </div>
             <>
-                {renderConfigButtons(id)}
+                {renderConfigButtons(id,handleDeleteClick)}
             </>
         </div>
     )
