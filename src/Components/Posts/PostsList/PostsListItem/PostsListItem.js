@@ -1,11 +1,16 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import styles from './PostListItem.module.css';
 
 const renderConfigButtons = (id)=>{
     return(
         <>
-        <div className="col-md-1 offset-md-1 align-self-center no-gutters"><button className="btn btn-primary px-4 py-1">Edit</button></div>
-        <div className="col-md-1 align-self-center p-0"><button className="btn btn-danger px-4 py-1">Delete</button></div>
+        <div className="col-lg-1 col-md-2 col-sm-6 align-self-center p-1">
+            <Link to={`/edit/${id}`} className="btn btn-primary btn-block">Edit</Link>
+        </div>
+        <div className="col-lg-1 col-md-2 col-sm-6 align-self-center p-1">
+            <Link to={`/delete/${id}`} className="btn btn-danger btn-block">Delete</Link>
+        </div>
         </>
     )
 }
@@ -13,10 +18,10 @@ const renderConfigButtons = (id)=>{
 const PostsListItem = ({postItem})=>{
     let {body,title,id} = postItem;
     return(
-        <div className={`row ${styles.postsListItemContainer}`}>
-            <div className={`col-md-9 ${styles.postListItem} py-5`}>
-                <h2>{title}</h2>
-                <p>{body}</p>
+        <div className={`row ${styles.postsListItemContainer} pb-5 mb-5`}>
+            <div className={`col-lg-9 col-md-8 py-3 ${styles.postListItem}`}>
+                <h3>{title}</h3>
+                <p className="mb-3">{body}</p>
             </div>
             <>
                 {renderConfigButtons(id)}

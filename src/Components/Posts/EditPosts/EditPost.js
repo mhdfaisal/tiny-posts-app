@@ -60,7 +60,12 @@ class EditPost extends React.Component{
 
     handleSubmit = (e)=>{
         e.preventDefault();
-
+        fetchData.patch(`https://jsonplaceholder.typicode.com/posts/${this.state.postId}`,{
+            title:this.state.formData.title.value,
+            body:this.state.formData.description.value
+        })
+        .then(res => this.props.history.push("/update", {...res.data}))
+        .catch(err => console.log(err))
     }
 
     renderEditForm =()=>{
